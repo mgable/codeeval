@@ -1,9 +1,10 @@
 "use strict";
 /*Sample code to read in test cases:*/
-var fs  = require("fs");
+var fs  = require("fs"),
+	results = [];
+	
 fs.readFileSync(process.argv[2]).toString().split('\n').forEach(function (line) {
-	var input = line.split(" "),
-		results = [], 
+	var input = line.split(" "),, 
 		firstDividor = +input[0],
 		secondDividor = +input[1],
 		count = +input[2];
