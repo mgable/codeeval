@@ -7,19 +7,21 @@ fs.readFileSync(process.argv[2]).toString().split('\n').forEach(function (line) 
     }
 });
 
-function beautify(str){
-	var arr = str.split(""),
-    sums = [],
-    start = 26,
-    cache = {};
+function beautify(input){
+  var cache = {},
+      str = input.replace(/[^a-zA-Z]/gi, "").toLowerCase(),
+      arr = str.replace(/./g, function(item){
+        if(cache[item]) {return "";}
+        cache[item] = true;
+        return item;
+      }).split(""),
+      sums = [],
+      start = 26;
+  
 
-  arr.forEach(function(_item_){
-    var item = _item_.toLowerCase();
-    if (/\w/.test(item) && !cache[item]){
-      var re = new RegExp(item, "ig");
+  arr.forEach(function(item){
+      var re = new RegExp(item, "g");
       sums.push(str.match(re).length);
-      cache[item] = true;
-    } 
   });
 
   return sums.sort().reverse().reduce(function(a,b){return a + (b * start--)},0);
