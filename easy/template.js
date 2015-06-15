@@ -5,3 +5,9 @@ fs.readFileSync(process.argv[2]).toString().split('\n').forEach(function (line) 
         console.info(/* Function */(line));
     }
 });
+
+/*
+function <name>(line){
+	// body
+}
+*/
