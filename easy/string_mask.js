@@ -12,6 +12,6 @@ function stringMask(line){
       mask = arr[1].split("");
   
   return mask.map(function(item, index){
-    return  (item === "1")? word[index].toUpperCase() : word[index];;
+    return  (item === "1")? word[index].toUpperCase() : word[index];
   }).join("");
-};
+}
