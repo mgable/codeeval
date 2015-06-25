@@ -2,12 +2,12 @@
 var fs  = require("fs");
 fs.readFileSync(process.argv[2]).toString().split('\n').forEach(function (line) {
     if (line !== "") {
-        console.info(/* Function */(line));
+        console.info(capitalizeWord(line));
     }
 });
 
-/*
-function <name>(line){
-	// body
+function capitalizeWord(line){
+	return line.replace(/\b\w/g, function(item){
+	  return item.toUpperCase();
+	});
 }
-*/
