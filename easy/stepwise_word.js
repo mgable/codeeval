@@ -1,5 +1,5 @@
 "use strict";
-var fs  = require("fs");
+var fs  = require("fs"), str = "";
 fs.readFileSync(process.argv[2]).toString().split('\n').forEach(function (line) {
     if (line !== "") {
         console.info(parse(line));
@@ -7,6 +7,7 @@ fs.readFileSync(process.argv[2]).toString().split('\n').forEach(function (line) 
 });
 
 function parse(line){
+	str = "";
   return line.split(" ").reduce(function(a,b){
     return (a.length - b.length > 0)? a : b;
   },"").split("").map(function(item, index){
@@ -15,9 +16,8 @@ function parse(line){
 }
 
 function getSpaces(howMany){
-  var str = "";
-  for (var x = 0; x < howMany; x++){
-    str+= "*";
+  if(howMany){
+    str += "*";    
   }
   return str;
 }
