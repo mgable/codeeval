@@ -1,6 +1,6 @@
 "use strict";
 var fs  = require("fs"),
-results = [], cache = {};
+ cache = {};
 fs.readFileSync(process.argv[2]).toString().split('\n').forEach(function (line) {
     if (line !== "") {
         console.info(makePrimes(line));
@@ -22,6 +22,7 @@ function isPrime(num) {
 
 
 function makePrimes(lessThan){
+	var results = [];
   for (var x = 2, limit = parseInt(lessThan); x <= limit; x++){
     if (isPrime(x)){
       results.push(x);
