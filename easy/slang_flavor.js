@@ -18,9 +18,8 @@ function parse(data){
 }
 
 function getPointer(){
-	if (pointer++ > slang.length){
+	if (++pointer > slang.length - 1){
 		pointer = 0;
 	}
-	console.info("the pointer is %s", pointer)
 	return pointer;
 }

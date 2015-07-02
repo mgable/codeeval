@@ -9,7 +9,7 @@ fs.readFileSync(process.argv[2]).toString().split('\n').forEach(function (line) 
 function parse(line){
 	str = "";
   return line.split(" ").reduce(function(a,b){
-    return (a.length - b.length > 0)? a : b;
+    return (a.length - b.length >= 0)? a : b;
   },"").split("").map(function(item, index){
     return getSpaces(index) + item + " ";
   }).join("").trim();
