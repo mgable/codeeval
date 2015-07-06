@@ -20,5 +20,5 @@ function getUniques(str){
 		a[i] = parseInt(v,10);
 	});
 
-	return results.sort();
+	return results.sort(function(a,b){return a - b;});
 }
