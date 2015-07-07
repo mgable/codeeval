@@ -24,5 +24,5 @@ function beautify(input){
       sums.push(str.match(re).length);
   });
 
-  return sums.sort().reverse().reduce(function(a,b){return a + (b * start--)},0);
+  return sums.sort(function(a,b){return a - b}).reverse().reduce(function(a,b){return a + (b * start--)},0);
 }
