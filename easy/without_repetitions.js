@@ -7,5 +7,5 @@ fs.readFileSync(process.argv[2]).toString().split('\n').forEach(function (line) 
 });
 
 function withoutRepetitions(line){
-	return line.replace(/(\w)\1+/g, "$1");
+	return line.replace(/(.)\1+/g, "$1");
 }
