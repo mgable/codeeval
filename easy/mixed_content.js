@@ -18,5 +18,5 @@ function parse(str){
     }
   });
   
-  return words.join(",") + (words.length ? "|":"") + digits.join(",");
+  return words.join(",") + ( (words.length && digits.length) ? "|":"") + digits.join(",");
 }

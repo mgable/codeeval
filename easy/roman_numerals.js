@@ -16,6 +16,7 @@ function romanNumerals(line){
 	var nums = line.split("").map(function(num){ 
 		return parseInt(num);
 	}).reduce(function(a, b, i, arr){
+		if (b === 0) return a;
 		return a + numToRom[((arr.length - 1)  - i)][(b-1)];
 	},"");
 
