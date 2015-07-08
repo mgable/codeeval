@@ -22,8 +22,8 @@ fs.readFileSync(process.argv[2]).toString().split('\n').forEach(function (line) 
 
 function parse(line){
   var arr = line.split(";"),
-      pp = parseFloat(arr[0] * 100),
-      ch = parseFloat(arr[1] * 100),
+      pp = parseInt(arr[0] * 100),
+      ch = parseInt(arr[1] * 100),
       change = ch - pp,
       coins = [];
   
@@ -39,7 +39,7 @@ function parse(line){
 	      }
 	      change -= count * parseInt(prop);
 	    }
-	  }
+	}
   });
   
   return coins.join(",");
