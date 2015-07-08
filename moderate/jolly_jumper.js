@@ -11,7 +11,6 @@ function parse(line){
 	  last = list.length - 1,
       isJolly = list.every(function(v,i,a){
         var dif = Math.abs(v - a[i+1]).toString();
-
         return (i < last) ? ( a.indexOf(dif) > -1 ? true : false) : true;
       });
 
