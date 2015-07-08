@@ -13,7 +13,7 @@ function parse(line){
       end = parseInt(arr[1]),
       primes = [];
   
-  for (var i = start; i < end; i++){
+  for (var i = start; i <= end; i++){
     if (isPrime(i)){
       primes.push(i);
     }
