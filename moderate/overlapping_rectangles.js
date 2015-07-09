@@ -12,8 +12,8 @@ console.info(parse(data));
 
 function parse(line){
   var arr = line.split(","),
-      point1 = {x: arr[0], y: arr[1], height: arr[2] - arr[0], width: arr[4] - arr[1]},
-      point2 = {x: arr[5], y: arr[6], height: , width: ""},
+      point1 = {x: arr[0], y: arr[1], height: arr[2] - arr[0], width: arr[3] - arr[1]},
+      point2 = {x: arr[4], y: arr[6], height: arr[5] - arr[4], width: arr[7] - arr[6]},
       
   return line;
 }
