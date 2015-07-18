@@ -6,6 +6,7 @@ fs.readFileSync(process.argv[2]).toString().split('\n').forEach(function (line) 
     }
 });
 
+//http://stackoverflow.com/questions/2219526/how-many-bytes-in-a-javascript-string
 function fileSize(line){
-	return (fs.existsSync(line))? fs.statSync(line).size : 0;
+	return encodeURI(line).split(/%..|./).length - 1;
 }
