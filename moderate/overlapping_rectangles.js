@@ -2,25 +2,17 @@
 var fs  = require("fs");
 fs.readFileSync(process.argv[2]).toString().split('\n').forEach(function (line) {
     if (line !== "") {
-        console.info(/* Function */(line));
+        console.info(parse(line));
     }
 });
 
-var data = "-3,3,-1,1,1,-1,3,-3";
-
-console.info(parse(data));
-
 function parse(line){
   var arr = line.split(","),
-      point1 = {x: arr[0], y: arr[1], height: arr[2] - arr[0], width: arr[3] - arr[1]},
-      point2 = {x: arr[4], y: arr[6], height: arr[5] - arr[4], width: arr[7] - arr[6]},
+      rectangle1 = {x: parseInt(arr[0]), y: parseInt(arr[1]), height: Math.abs(arr[2] - arr[0]), width: Math.abs(arr[3] - arr[1])},
+      rectangle2 = {x: parseInt(arr[4]), y: parseInt(arr[6]), height: Math.abs(arr[5] - arr[4]), width: Math.abs(arr[7] - arr[6])};
       
-  return line;
+  return isOverlapping(rectangle1, rectangle2) ? "True" : "False";
 }
-
-
-
-
 
 function isOverlapping(a, b) {
   return !(
