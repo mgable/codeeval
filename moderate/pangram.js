@@ -8,7 +8,7 @@ fs.readFileSync(process.argv[2]).toString().split('\n').forEach(function (line) 
 });
 
 function parse(data){
-  var results = data.replace(/\W/g, "").toLowerCase().split("").sort().filter(function(item, index, arr){
+  var results = data.toLowerCase().replace(/[^a-z]/g, "").split("").sort().filter(function(item, index, arr){
     if (index === 0){
       return true;
     }

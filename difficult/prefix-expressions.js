@@ -15,15 +15,15 @@ function parse (line){
       total = 0;
   
   arr.forEach(function(v,i,a){
-    if (/[0-9]+/.test(v)){
+    if (/\d+/.test(v)){
       stack.unshift(v);
     } else {
       operand1 = stack.shift();
       operand2 = stack.shift();
-      total = eval (operand1 + v + operand2);
+      total = eval (operand1 + v + operand2)
       stack.unshift(total);
     }
   });
   
-  return stack[0];
+  return (/\d+/.test(stack[0])) ? stack[0] : 0;
 }

@@ -6,19 +6,22 @@ fs.readFileSync(process.argv[2]).toString().split('\n').forEach(function (line) 
     }
 });
 
+// -2,2,2,-2,0,0,1,1
 function parse(line){
-  var arr = line.split(","),
-      rectangle1 = {x: parseInt(arr[0]), y: parseInt(arr[1]), height: Math.abs(arr[2] - arr[0]), width: Math.abs(arr[3] - arr[1])},
-      rectangle2 = {x: parseInt(arr[4]), y: parseInt(arr[6]), height: Math.abs(arr[5] - arr[4]), width: Math.abs(arr[7] - arr[6])};
+  var arr = line.split(",").map(function(item){return parseInt(item);}),
+      rectangle1 = {x: arr[0], y: arr[1], width: Math.abs(arr[0] - arr[2]), height: Math.abs(arr[1] - arr[3])},
+      rectangle2 = {x: arr[4], y: arr[5], width: Math.abs(arr[4] - arr[6]), height: Math.abs(arr[5] - arr[7])};
       
   return isOverlapping(rectangle1, rectangle2) ? "True" : "False";
 }
 
 function isOverlapping(a, b) {
+  console.info(a);
+ console.info(b);
   return !(
-    ((a.y + a.height) < (b.y)) ||
-    (a.y > (b.y + b.height)) ||
-    ((a.x + a.width) < b.x) ||
-    (a.x > (b.x + b.width))
+    ((a.y + a.height) <= (b.y)) ||
+    (a.y >= (b.y + b.height)) ||
+    ((a.x + a.width) <= b.x) ||
+    (a.x >= (b.x + b.width))
   );
 }
