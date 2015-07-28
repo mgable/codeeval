@@ -9,7 +9,7 @@ fs.readFileSync(process.argv[2]).toString().split('\n').forEach(function (line) 
 });
 
 function parse(data, value){
-  var found = false, current = data, parent;
+  var found = false, current = data, parent = data;
   while (!found && current){
     if (value < current.value){
       parent = current;

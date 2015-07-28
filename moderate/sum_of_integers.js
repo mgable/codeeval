@@ -10,12 +10,12 @@ function parse(data){
   var arr = data.split(",").map(function(item){return parseInt(item)}),
       results = [];
   
-  arr.forEach(function(item, index){
-    for (var x = (index + 1), limit = (arr.length + 1); x < limit; x++){
-      results.push(sum(arr.slice(index,index + x)));
+   arr.forEach(function(item, index){
+    for (var x = (index+ 1), limit = arr.length; x <= limit; x++){
+      results.push(sum(arr.slice(index,x)));
     }
   });
-  
+
   return Math.max.apply(Math, results);
 }
 
