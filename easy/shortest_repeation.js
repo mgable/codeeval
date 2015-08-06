@@ -7,7 +7,7 @@ fs.readFileSync(process.argv[2]).toString().split('\n').forEach(function (line) 
 });
 
 function parse(line){
-  var source = line, counter = 1,selected;;
+  var source = line, counter = 1, selected;
   
   while (counter < source.length){
     var re = new RegExp("^(\\w{" + counter++ + "})\\1+$",'g'), results;
