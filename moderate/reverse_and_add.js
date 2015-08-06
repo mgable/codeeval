@@ -2,14 +2,19 @@
 var fs  = require("fs");
 fs.readFileSync(process.argv[2]).toString().split('\n').forEach(function (line) {
     if (line !== "") {
+    	//console.info("the line is " + line);
         console.info(parse(line));
     }
 });
 
 function parse(line){
-    var start = parseInt(line),
+    var start = parseInt(line, 10),
         iterations = 0,
         limit = 100;
+
+    if (isPalindrome(start)){
+    	return iterations + " " + start;
+    }
   
   while (iterations++ < limit){
    start = addReverse(start);
@@ -20,7 +25,7 @@ function parse(line){
 }
 
 function isPalindrome(num){
-  var str = num.toString();
+  var str = num.toString(10);
   return str === str.split("").reverse().join("");
 }
 
@@ -29,5 +34,5 @@ function addReverse(num){
 }
 
 function getReverse(num){
-  return parseInt(num.toString().split("").reverse().join(""));
+  return parseInt(num.toString(10).split("").reverse().join(""), 10);
 }

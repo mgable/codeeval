@@ -13,10 +13,10 @@ function parse(line){
       frag = data.slice(start++,5);
   
   while(frag.length >= 5){
-    var arrow = frag.match(/(\<\-\-\<\<)|(\>\>\-\-\>)/g);
+    var arrow = frag.match(/(<\-\-<<)|(\>\>\-\-\>)/g);
     if (arrow) results.push(arrow);
     frag = data.slice(start, start++ + 5);
   }
   
-  return results.length
+  return results.length;
 }
