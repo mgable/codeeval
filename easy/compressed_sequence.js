@@ -6,14 +6,19 @@ fs.readFileSync(process.argv[2]).toString().split('\n').forEach(function (line) 
     }
 });
 
-function parse(str){
-	var myArray,
-		myRe = /(\d{1,2})(\b\s+\1)*/g,
-		results = [];
-	while ((myArray = myRe.exec(str)) !== null) {
-	  var temp = myArray[0].split(" ");
-	  results.push(temp.length, temp[0]);
-	}
-
-	return results.join(" ");
+function parse(line){
+  var arr = line.split(" "), results = [], temp = [];
+  arr.forEach(function(v,i,a){
+    if (temp.length !== 0 && temp[0] != v){
+      results.push(temp);
+      temp = [];
+    }
+    temp.push(v);
+  });
+  
+  results.push(temp);
+  
+  return results.map(function(v,i,a){
+    return [v.length, v[0]];
+  }).join(" ").split(",").join(" ");
 }
