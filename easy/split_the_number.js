@@ -15,6 +15,6 @@ function parse(line){
       second = num.slice(formula[1].length),
       operator = formula[2];
   
-  return (operator === "+") ? parseInt(first) + parseInt(second) : first - second;
+  return (operator === "+") ? parseInt(first, 10) + parseInt(second, 10) : parseInt(first,10) - parseInt(second,10);
 
 }
