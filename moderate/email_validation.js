@@ -1,8 +1,8 @@
 "use strict";
-var fs  = require("fs");
+var fs  = require("fs"), counter = 1;
 fs.readFileSync(process.argv[2]).toString().split('\n').forEach(function (line) {
     if (line !== "") {
-        console.info(parse(line));
+        console.info(counter++, parse(line));
     }
 });
 
