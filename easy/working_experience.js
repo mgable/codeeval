@@ -24,27 +24,37 @@ function parse(line){
   // starts and finishes less than last finish === complete overlap
   // starts less than last finish but ends greater than last finish == some overlap
 
-  arr.forEach(function(v,i,a){
-    var months = 0;
-    // is it first 
-    if (i > 0){
-      if ( v[1] > a[i-1][1] && v[0] > a[i-1][1] ){
-        //console.info("no overlap")
-        months = calculateMonths(v[1], v[0]);
-      } else if (v[0] <= a[i-1][1] && v[1] > a[i-1][1]){
-       // console.info("partial overlap");
-        months = calculateMonths(v[1], a[i-1][1])
-      } else {
-        //console.info("complete overlap");
-      }
-    } else {
-      //console.info("first")
-      months = calculateMonths(v[1], v[0]);
-    }
-    
-    results += months;
-  });
- 
+ var limit = arr.length;
+ for (var i = 0; i < limit; i++){
+   var months = 0,
+       endDate,
+       v = arr[i],
+       a = arr;
+    if (!v) break;
+   // is it first 
+   if (i > 0){
+     if ( v[1] > a[i-1][1] && v[0] > a[i-1][1] ){
+       //console.info("no overlap")
+       months = calculateMonths(v[1], v[0]);
+     } else if (v[0] <= a[i-1][1] && v[1] > a[i-1][1]){
+      //console.info("partial overlap");
+       endDate = a[i-1][1];
+       endDate = new Date (endDate.getFullYear(), (endDate.getMonth() + 1) );
+       months = calculateMonths(v[1], endDate)
+     } else {
+       arr.splice(i,1);
+       i--;
+      // console.info("complete overlap");
+     }
+   } else {
+     //console.info("first")
+     months = calculateMonths(v[1], v[0]);
+   }
+   
+   //console.info("months: %d", months)
+   results += months;
+}
+  
   return Math.floor(results/12);
 }
 
