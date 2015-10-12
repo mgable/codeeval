@@ -12,37 +12,29 @@ var data = "100 100";
 
 console.info(parse(data));
 
-function parse(line){
-  var temp = line.split(" ").map(function(v,i,a){return parseInt(v)}),
-      doors = temp[0],
-      iterations = temp[1],
-      rows = []
-     
-  for (var i = 0, limit = doors; i < limit; i++){
-    rows[i] = true;
-  }
-  
-  for (var i = 0; i < iterations; i ++){
-    rows.forEach(function(v,i,a){
-      if ((i+1) % 2 === 0){
-        a[i] = false;
-      }
-    });
-
-    rows.forEach(function(v,i,a){
-      if ((i+1) % 3 === 0){
-        a[i] = !a[i];
-      }
-    })
-
-  }
-  rows[rows.length - 1] = !rows[rows.length - 1];
-  
-  return rows.reduce(function(a,b){
-    if (b === true){
-      return a += 1;
-    }else{
-      return a;
-    }
-  }, 0);
+var a = 0, b = 0;
+for (var x = 0; x < 10; x++){
+  a = 1 << x;
+  b += a;
 }
+
+console.info(b.toString(2))
+
+var a = 0, b = 0;
+for (var x = 0; x < 10; x++){
+  a = ((x+1) % 2 === 0 ? 0 : 1) << x;
+  b += a;
+}
+console.info(b.toString(2));
+
+
+var a = 0, b = 0;
+for (var x = 0; x < 10; x++){
+  a = ((x+1) % 3 === 0 ? 0 : 1) << x;
+  b += a;
+}
+console.info(b.toString(2))
+
+
+//1 - on or open
+//0 - off or closed
