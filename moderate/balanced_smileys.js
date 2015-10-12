@@ -6,33 +6,48 @@ fs.readFileSync(process.argv[2]).toString().split('\n').forEach(function (line) 
     }
 });
 
+//https://www.facebook.com/notes/facebook-hacker-cup/qualification-round-solutions/598486173500621
+/*
+The idea is to keep track of the possible range of open parentheses.
+We use two values, 'minOpen' and 'maxOpen'. Initialize both of these to 0.
+Iterate over the message, character by character.
+Whenever you encounter a '(', you increment maxOpen, and if it wasn't part of a smiley, you also increment minOpen.
+Whenever you encounter a ')', you decrement minOpen, and if it wasn't part of a frowny face, decrement maxOpen. If minOpen is negative, reset it to 0.
+ 
+ 
+If maxOpen ever was negative, or minOpen isn't 0, it wasn't possible that the message had balanced parentheses. Otherwise it was possible.
+*/
+
+/* I had a very hard time with this one and do not consider that I solved it. It was deleted from code eval. I will try and solve it using a different algorthm, even the one above which I translated into javascript is still confusing. */
+
 function parse(line){
-  if (check (line)){
-    return "YES";
-  }
-  
-  return check(remove(line)) ? "YES" : "NO";
-  
-}
-
-function check(line){
   var temp = line.split(""),
-      count = 0;
+      minOpen = 0,
+      maxOpen = 0;
   
-  for (var x = 0; x < temp.length; x++){
-    if (temp[x] === "("){
-      count++;
-    } else if (temp[x]===")"){
-      count--;
+  var results = temp.every(function(v,i,a){
+    if (/\(/.test(v)){
+      maxOpen++;
+      if(!isOptional(a[i-1])){
+        minOpen++;
+      }
+    }else if (/\)/.test(v)){
+      minOpen--;
+      if(!isOptional(a[i-1])){
+        maxOpen--;
+      }
     }
-    if (count < 0) {
-      return false;
-    }
-  }
+    
+    if (minOpen < 0) { minOpen = 0;}
+                     
+    return (maxOpen >= 0);
+  });
   
-  return (count === 0) ? true : false;
+  return  (minOpen === 0 && results) ? "YES" : "NO"; 
 }
 
-function remove(str){
-  return str.replace(/\:(\(|\))/g, "");
+function isOptional(str){
+  //console.info(str);
+  return (str === ":") ? true : false;
 }
+
